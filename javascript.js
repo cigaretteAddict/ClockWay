@@ -89,6 +89,7 @@ const WATCHES = [
     n: "Aurum Classic",
     p: 48900,
     k: "Ouro 18k, automático, mostrador champanhe",
+    img: "F:\\ClockWay\\imagens\\relogio 1.jpg",
     c: "#c9a24b",
     d: "#f3ead2",
     s: "#5a3a22",
@@ -98,6 +99,7 @@ const WATCHES = [
     n: "Nocturne",
     p: 36500,
     k: "Aço 316L, automático, mostrador preto",
+    img: "F:\\ClockWay\\imagens\\relogio 2.jpg",
     c: "#bfc3c8",
     d: "#10151c",
     s: "#1b1b1b",
@@ -107,6 +109,7 @@ const WATCHES = [
     n: "Meridian GMT",
     p: 52900,
     k: "Aço, automático, segundo fuso horário",
+    img: "F:\\ClockWay\\imagens\\relogio 3.jpg",
     c: "#aeb4ba",
     d: "#1d3b5a",
     s: "#2b2b2b",
@@ -116,6 +119,7 @@ const WATCHES = [
     n: "Abyss Diver",
     p: 41200,
     k: "Aço, mergulho 300 m, coroa rosqueada",
+    img: "F:\\ClockWay\\imagens\\relogio 4.jpg",
     c: "#9aa1a8",
     d: "#0a2a2a",
     s: "#0f3d3d",
@@ -125,6 +129,7 @@ const WATCHES = [
     n: "Regent Skeleton",
     p: 87500,
     k: "Ouro rosé, esqueleto, corda manual",
+    img: "F:\\ClockWay\\imagens\\relogio 5.jpg",
     c: "#d1a29a",
     d: "#2a1a1a",
     s: "#3b1f1f",
@@ -134,6 +139,7 @@ const WATCHES = [
     n: "Sovereign Chrono",
     p: 64800,
     k: "Ouro, cronógrafo automático, pulseira de couro",
+    img: "F:\\ClockWay\\imagens\\relogio 6.jpg",
     c: "#c9a24b",
     d: "#101010",
     s: "#6b4a2b",
@@ -149,7 +155,7 @@ const draw = (q) => {
     ? list
         .map(
           (w) =>
-            `<article class="card"><div class="pic">${watchSVG(w.c, w.d, w.s, w.t)}</div><h3>${w.n}</h3><p class="mut">${w.k}</p><strong>${money(w.p)}</strong><button class="btn" data-i="${w.i}">Adicionar ao carrinho</button></article>`,
+            `<article class="card"><div class="pic">${w.img ? `<img src="${w.img}" alt="Relógio ${w.n}" loading="lazy">` : '<span>Adicione o endereço da imagem no campo img</span>'}</div><h3>${w.n}</h3><p class="mut">${w.k}</p><strong>${money(w.p)}</strong><button class="btn" data-i="${w.i}">Adicionar ao carrinho</button></article>`,
         )
         .join("")
     : '<p class="mut">Nenhum relógio encontrado. Tente outro nome ou material.</p>';
@@ -168,9 +174,17 @@ grid.onclick = (e) => {
   b.textContent = "Adicionado ✓";
   setTimeout(() => (b.textContent = "Adicionar ao carrinho"), 1200);
 };
-$("#cupom").onclick = (e) => {
+$("#couponForm").onsubmit = (e) => {
+  e.preventDefault();
   coupon = true;
-  e.target.textContent = "Cupom CLOCK5 ativado ✓";
+  $("#couponStatus").textContent =
+    "Cupom CLOCK5 ativado. O desconto será aplicado ao carrinho.";
+  $("#cupom").textContent = "Cupom ativado ✓";
+};
+$("#feedbackForm").onsubmit = (e) => {
+  e.preventDefault();
+  $("#feedbackStatus").textContent = "Obrigado por compartilhar sua opinião!";
+  e.currentTarget.reset();
 };
 
 /* ---------- janela: carrinho, sobre e serviços ---------- */
