@@ -474,12 +474,12 @@ h2 {
 
 /* rodapé em gradiente: branco para preto (claro) ou preto para branco (escuro) */
 footer {
-  min-height: 70vh; /* define a altura mínima */
+  min-height: 25vh; /* define a altura mínima */
   display: flex; /* define o tipo de layout */
   align-items: flex-end; /* alinha itens no eixo transversal */
   justify-content: center; /* distribui itens no eixo principal */
   padding: 0 5vw 8vh; /* define o espaço interno */
-  background: linear-gradient(var(--bg), var(--fg)); /* define o fundo */
+  background: var(--fg); /* fundo sólido */
 }
 footer div {
   display: flex; /* define o tipo de layout */
