@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Clockway - Relógios de luxo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Jost:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <aside id="announcement" class="announcement" aria-label="Aviso da loja">
+      <span>Inauguração da loja Clockway!</span>
+      <button id="closeAnnouncement" type="button" aria-label="Fechar aviso">
+        ×
+      </button>
+    </aside>
+
+    <header class="bar"><span>clockway</span></header>
+
+    <div class="logo" role="img" aria-label="Clockway">
+      <svg viewBox="0 0 1000 320" aria-hidden="true">
+        <text
+          x="500"
+          y="185"
+          text-anchor="middle"
+          textLength="880"
+          lengthAdjust="spacing"
+        >
+          CLOCKWAY
+        </text>
+      </svg>
+    </div>
+
+    <div class="tools">
+      <a class="tool-link" href="#loja">Relógios</a>
+      <a class="tool-link" href="#ia">IA</a>
+      <button id="cartBtn" class="round" aria-label="Abrir carrinho">
+        🛒<b id="count">0</b>
+      </button>
+      <button
+        id="theme"
+        class="round"
+        aria-label="Alternar entre modo claro e escuro"
+      ></button>
+    </div>
+
+    <main>
+      <section class="tour" id="tour">
+        <div class="stage">
+          <div id="hero" class="watch"></div>
+          <div class="lab r" style="--y: 0; --e: 0.183">
+            <h4>Coroa</h4>
+            <span>Rosqueada, garante 100 m de resistência à água.</span>
+          </div>
+          <div class="lab l" style="--y: -0.12; --e: 0.06">
+            <h4>Vidro de safira</h4>
+            <span>Antirreflexo e resistente a riscos.</span>
+          </div>
+          <div class="lab r" style="--y: -0.14; --e: 0.04">
+            <h4>Mostrador</h4>
+            <span>Índices aplicados à mão e ponteiros luminosos.</span>
+          </div>
+          <div class="lab l" style="--y: 0.02; --e: 0.175">
+            <h4>Caixa</h4>
+            <span>Aço ou ouro, polida peça por peça.</span>
+          </div>
+          <div class="lab r" style="--y: 0.14; --e: 0.04">
+            <h4>Movimento</h4>
+            <span>Mecânico automático com reserva de marcha.</span>
+          </div>
+          <div class="lab l" style="--y: 0.3; --e: 0.05">
+            <h4>Pulseira</h4>
+            <span>Couro ou aço, com fecho de segurança.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="shop" id="loja">
+        <h2>Coleção</h2>
+        <input
+          id="q"
+          type="search"
+          placeholder="Pesquisar relógio"
+          aria-label="Pesquisar relógio"
+        />
+        <div id="grid" class="grid"></div>
+      </section>
+
+      <section class="ai" id="ia">
+        <h2>Pergunte sobre relógios</h2>
+        <p class="mut">
+          Tire dúvidas sobre movimentos, materiais, manutenção e sobre os
+          modelos da coleção.
+        </p>
+        <div id="log" class="log" aria-live="polite"></div>
+        <div class="chips">
+          <button>Qual a diferença entre automático e quartzo?</button>
+          <button>Como cuidar do meu relógio?</button>
+          <button>Qual escolher como primeiro relógio?</button>
+        </div>
+        <form id="chat">
+          <input
+            id="ask"
+            placeholder="Digite sua pergunta"
+            aria-label="Sua pergunta"
+            autocomplete="off"
+          />
+          <button class="btn">Perguntar</button>
+        </form>
+      </section>
+
+      <section class="promo">
+        <h3>5% de desconto na primeira compra</h3>
+        <p>
+          Use o cupom <strong>CLOCK5</strong> e ele é aplicado no seu carrinho.
+        </p>
+        <button id="cupom" class="btn">Ativar cupom</button>
+      </section>
+
+      <section class="intro ending">
+        <p>Relógios de luxo, venda e manutenção</p>
+        <small>Role a página para ver o relógio por dentro</small>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <button data-m="servicos">Serviços</button>
+        <button data-m="sobre">Sobre</button>
+      </div>
+    </footer>
+
+    <dialog id="modal">
+      <button class="x" aria-label="Fechar">×</button>
+      <div id="mbody"></div>
+    </dialog>
+
+    <script src="javascript.js"></script>
+  </body>
+</html>

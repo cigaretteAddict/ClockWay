@@ -1,0 +1,513 @@
+:root {
+  --bg: #fff; /* cor de fundo */
+  --fg: #000; /* cor principal do texto */
+  --mut: #5f5f5a; /* cor do texto secundário */
+  --gold: #a8842f; /* cor de destaque */
+  --card: #faf9f6; /* fundo dos cartões */
+  --line: #e2e0d9; /* cor das bordas */
+  --serif: "Cormorant Garamond", Georgia, serif; /* fonte serifada do site */
+}
+[data-theme="dark"] {
+  --bg: #000; /* cor de fundo */
+  --fg: #fff; /* cor principal do texto */
+  --mut: #a09d95; /* cor do texto secundário */
+  --gold: #d4af37; /* cor de destaque */
+  --card: #0d0d0d; /* fundo dos cartões */
+  --line: #262626; /* cor das bordas */
+}
+* { /* aplica a regra a todos os elementos */
+  box-sizing: border-box; /* define como largura e altura são calculadas */
+}
+html {
+  scroll-behavior: smooth; /* define o comportamento da rolagem */
+}
+body {
+  margin: 0; /* define o espaço externo */
+  background: var(--bg); /* define o fundo */
+  color: var(--fg); /* define a cor do texto */
+  font: /* define as características da fonte */
+    300 1rem/1.6 Jost, /* peso, tamanho, altura de linha e fonte principal */
+    system-ui, /* primeira fonte alternativa se Jost não estiver disponível */
+    sans-serif; /* continua a configuração da fonte */
+  transition: /* define quais mudanças são animadas */
+    background 0.4s, /* anima mudanças na cor de fundo por 0,4 segundo */
+    color 0.4s; /* continua a lista de transições */
+}
+button, /* inclui botões neste conjunto de estilos */
+input {
+  font: inherit; /* define as características da fonte */
+  color: inherit; /* define a cor do texto */
+}
+button {
+  cursor: pointer; /* define o formato do cursor */
+}
+:focus-visible {
+  outline: 2px solid var(--gold); /* define o contorno de foco */
+  outline-offset: 3px; /* define a distância do contorno */
+}
+.mut {
+  color: var(--mut); /* define a cor do texto */
+}
+h2, /* inclui h2 neste conjunto de estilos */
+h3 {
+  font-family: var(--serif); /* define a família da fonte */
+  font-weight: 500; /* define a espessura da fonte */
+  margin: 0; /* define o espaço externo */
+}
+h2 {
+  font-size: clamp(2rem, 5vw, 3rem); /* define o tamanho da fonte */
+}
+
+/* topo: logo grande em arco que sobe e vira a frase pequena */
+.announcement {
+  position: relative; /* define o tipo de posicionamento */
+  min-height: 44px; /* define a altura mínima */
+  display: grid; /* define o tipo de layout */
+  place-items: center; /* alinha itens nos eixos do grid */
+  padding: 0.55rem 3.5rem; /* define o espaço interno */
+  background: var(--gold); /* define o fundo */
+  color: #000; /* define a cor do texto */
+  text-align: center; /* alinha o texto */
+  font-size: 0.9rem; /* define o tamanho da fonte */
+  font-weight: 500; /* define a espessura da fonte */
+  z-index: 45; /* define a ordem de sobreposição */
+}
+.announcement button {
+  position: absolute; /* define o tipo de posicionamento */
+  top: 50%; /* define a distância do topo */
+  right: 0.5rem; /* define a distância da direita */
+  transform: translateY(-50%); /* aplica deslocamento, escala ou transformação */
+  width: 32px; /* define a largura */
+  height: 32px; /* define a altura */
+  padding: 0; /* define o espaço interno */
+  border: 0; /* define a borda */
+  background: transparent; /* define o fundo */
+  color: inherit; /* define a cor do texto */
+  font-size: 1.5rem; /* define o tamanho da fonte */
+  line-height: 1; /* define a altura das linhas de texto */
+}
+.bar {
+  position: fixed; /* define o tipo de posicionamento */
+  inset: 0 0 auto; /* define distâncias em todos os lados */
+  height: 56px; /* define a altura */
+  display: grid; /* define o tipo de layout */
+  place-items: center; /* alinha itens nos eixos do grid */
+  background: var(--bg); /* define o fundo */
+  border-bottom: 1px solid var(--fg); /* define a borda inferior */
+  opacity: var(--bar-opacity, 0); /* define a transparência */
+  z-index: 20; /* define a ordem de sobreposição */
+}
+.bar span {
+  font: 700 1.5rem var(--serif); /* define as características da fonte */
+  text-decoration: underline; /* define a decoração do texto */
+  text-decoration-color: var(--gold); /* define a cor da decoração do texto */
+  text-underline-offset: 6px; /* define a distância do sublinhado */
+}
+/* O JavaScript ajusta esse espaço conforme o banner sai da tela ou é fechado. */
+.logo {
+  position: fixed; /* define o tipo de posicionamento */
+  top: calc(var(--notice-offset, 0px) + 2vh); /* define a distância do topo */
+  left: 50%; /* define a distância da esquerda */
+  width: min(94vw, 1000px); /* define a largura */
+  z-index: 25; /* define a ordem de sobreposição */
+  pointer-events: none; /* define se o elemento recebe eventos do mouse */
+  transform: translate(-50%, var(--logo-shift, 0%)) scale(var(--logo-scale, 1)); /* aplica deslocamento, escala ou transformação */
+  opacity: var(--logo-opacity, 1); /* define a transparência */
+}
+.logo svg {
+  display: block; /* define o tipo de layout */
+  width: 100%; /* define a largura */
+  overflow: visible; /* define como conteúdo excedente é tratado */
+}
+.logo text {
+  font: 700 150px var(--serif); /* define as características da fonte */
+  fill: var(--fg); /* aplica a cor principal ao preenchimento do SVG */
+}
+
+.tools {
+  position: fixed; /* define o tipo de posicionamento */
+  top: calc(var(--notice-offset, 0px) + 0.8rem); /* define a distância do topo */
+  right: 0.8rem; /* define a distância da direita */
+  display: flex; /* define o tipo de layout */
+  gap: 0.5rem; /* define o espaço entre itens */
+  z-index: 40; /* define a ordem de sobreposição */
+}
+.round {
+  position: relative; /* define o tipo de posicionamento */
+  width: 42px; /* define a largura */
+  height: 42px; /* define a altura */
+  padding: 0; /* define o espaço interno */
+  border-radius: 50%; /* arredonda os cantos */
+  border: 1px solid var(--fg); /* define a borda */
+  background: var(--bg); /* define o fundo */
+  display: grid; /* define o tipo de layout */
+  place-items: center; /* alinha itens nos eixos do grid */
+}
+.round b {
+  position: absolute; /* define o tipo de posicionamento */
+  top: -6px; /* define a distância do topo */
+  right: -6px; /* define a distância da direita */
+  min-width: 18px; /* define a largura mínima */
+  height: 18px; /* define a altura */
+  border-radius: 9px; /* arredonda os cantos */
+  background: var(--gold); /* define o fundo */
+  color: #000; /* define a cor do texto */
+  font: 500 0.7rem/18px Jost; /* define as características da fonte */
+  text-align: center; /* alinha o texto */
+}
+.tool-link {
+  height: 42px; /* define a altura */
+  padding: 0 0.8rem; /* define o espaço interno */
+  display: flex; /* define o tipo de layout */
+  align-items: center; /* alinha itens no eixo transversal */
+  border: 1px solid var(--fg); /* define a borda */
+  background: var(--bg); /* define o fundo */
+  color: var(--fg); /* define a cor do texto */
+  font-size: 0.85rem; /* define o tamanho da fonte */
+  text-decoration: none; /* define a decoração do texto */
+  white-space: nowrap; /* impede que o texto quebre em várias linhas */
+}
+.tool-link:hover {
+  background: var(--fg); /* define o fundo */
+  color: var(--bg); /* define a cor do texto */
+}
+#loja, /* inclui a seção da loja neste conjunto de estilos */
+#ia {
+  /* Evita esconder os títulos sob os controles fixos ao navegar pelos links. */
+  scroll-margin-top: 72px; /* deixa espaço acima da seção ao navegar até ela */
+}
+
+.intro {
+  height: 85vh; /* define a altura */
+  display: flex; /* define o tipo de layout */
+  flex-direction: column; /* define a direção dos itens flex */
+  align-items: center; /* alinha itens no eixo transversal */
+  justify-content: center; /* distribui itens no eixo principal */
+  gap: 0.6rem; /* define o espaço entre itens */
+  padding-top: 25vh; /* define o espaço interno superior */
+  text-align: center; /* alinha o texto */
+}
+.intro p {
+  margin: 0; /* define o espaço externo */
+  font: 500 clamp(1.2rem, 3vw, 1.7rem) var(--serif); /* define as características da fonte */
+}
+.intro small {
+  color: var(--mut); /* define a cor do texto */
+}
+.intro.ending {
+  height: auto; /* define a altura */
+  min-height: 30vh; /* define a altura mínima */
+  padding: 8vh 5vw; /* define o espaço interno */
+}
+
+/* relógio girando com as legendas */
+.tour {
+  height: 500vh; /* define a altura */
+  margin-top: 35vh; /* define o espaço externo superior */
+}
+.stage {
+  --wh: 70vh; /* altura do relógio */
+  --k: 0.3; /* distância das legendas ao relógio */
+  position: sticky; /* define o tipo de posicionamento */
+  top: 0; /* define a distância do topo */
+  height: 100vh; /* define a altura */
+  display: grid; /* define o tipo de layout */
+  place-items: center; /* alinha itens nos eixos do grid */
+  overflow: hidden; /* define como conteúdo excedente é tratado */
+  background: radial-gradient( /* define o fundo */
+    circle, /* escolhe um gradiente circular */
+    color-mix(in srgb, var(--gold) 20%, transparent), /* mistura dourado com transparência para o centro */
+    transparent 55% /* continua a definição do fundo ou gradiente */
+  ); /* continua a definição do fundo ou gradiente */
+}
+.watch {
+  height: var(--wh); /* define a altura */
+  perspective: 900px; /* define a profundidade da perspectiva 3D */
+  transform-style: preserve-3d; /* preserva transformações 3D dos filhos */
+}
+.watch svg {
+  height: 100%; /* define a altura */
+  transform: rotateX(8deg) rotateY(var(--r, 0deg)); /* aplica deslocamento, escala ou transformação */
+  transform-style: preserve-3d; /* preserva transformações 3D dos filhos */
+  filter: drop-shadow(0 30px 30px rgba(0, 0, 0, 0.35)); /* aplica um efeito visual */
+}
+.lab {
+  position: absolute; /* define o tipo de posicionamento */
+  top: calc(50% + var(--wh) * var(--y) - 0.75rem); /* define a distância do topo */
+  width: min(26vw, 230px); /* define a largura */
+  font-size: 0.85rem; /* define o tamanho da fonte */
+  color: var(--mut); /* define a cor do texto */
+  opacity: 0; /* define a transparência */
+  transition: opacity 0.6s; /* define quais mudanças são animadas */
+}
+.lab h4 {
+  margin: 0 0 0.15rem; /* define o espaço externo */
+  font: 700 1.2rem var(--serif); /* define as características da fonte */
+  color: var(--fg); /* define a cor do texto */
+}
+.lab::after {
+  content: ""; /* define o conteúdo gerado pelo pseudo-elemento */
+  position: absolute; /* define o tipo de posicionamento */
+  top: 0.75rem; /* define a distância do topo */
+  height: 1px; /* define a altura */
+  width: 0; /* define a largura */
+  background: var(--gold); /* define o fundo */
+  transition: width 0.7s 0.15s; /* define quais mudanças são animadas */
+}
+.lab.on {
+  opacity: 1; /* define a transparência */
+}
+.lab.on::after {
+  width: calc(var(--wh) * (var(--k) - var(--e)) - 8px); /* define a largura */
+}
+.lab.l {
+  right: calc(50% + var(--wh) * var(--k)); /* define a distância da direita */
+  text-align: right; /* alinha o texto */
+}
+.lab.l::after {
+  left: calc(100% + 8px); /* define a distância da esquerda */
+}
+.lab.r {
+  left: calc(50% + var(--wh) * var(--k)); /* define a distância da esquerda */
+}
+.lab.r::after {
+  right: calc(100% + 8px); /* define a distância da direita */
+}
+
+/* loja */
+.shop {
+  max-width: 1100px; /* define a largura máxima */
+  margin: 0 auto; /* define o espaço externo */
+  padding: 12vh 5vw 8vh; /* define o espaço interno */
+}
+#q {
+  display: block; /* define o tipo de layout */
+  width: min(360px, 100%); /* define a largura */
+  margin: 1rem 0 2.5rem; /* define o espaço externo */
+  padding: 0.7rem 1.2rem; /* define o espaço interno */
+  border: 1px solid var(--fg); /* define a borda */
+  border-radius: 999px; /* arredonda os cantos */
+  background: transparent; /* define o fundo */
+}
+.grid {
+  display: grid; /* define o tipo de layout */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* define as colunas do grid */
+  gap: 2rem; /* define o espaço entre itens */
+}
+.card {
+  display: flex; /* define o tipo de layout */
+  flex-direction: column; /* define a direção dos itens flex */
+  align-items: center; /* alinha itens no eixo transversal */
+  text-align: center; /* alinha o texto */
+  padding: 1.5rem; /* define o espaço interno */
+  border: 1px solid var(--line); /* define a borda */
+  background: var(--card); /* define o fundo */
+}
+.card h3 {
+  font-size: 1.6rem; /* define o tamanho da fonte */
+}
+.card p {
+  margin: 0.1rem 0 0.6rem; /* define o espaço externo */
+  font-size: 0.85rem; /* define o tamanho da fonte */
+}
+.card strong {
+  font: 500 1.3rem var(--serif); /* define as características da fonte */
+}
+.pic {
+  height: 230px; /* define a altura */
+  margin-bottom: 0.8rem; /* define o espaço externo inferior */
+}
+.pic svg {
+  height: 100%; /* define a altura */
+}
+.btn {
+  margin-top: 1rem; /* define o espaço externo superior */
+  padding: 0.75rem 1.4rem; /* define o espaço interno */
+  border: 1px solid var(--fg); /* define a borda */
+  background: transparent; /* define o fundo */
+  transition: /* define quais mudanças são animadas */
+    background 0.2s, /* anima a troca do fundo */
+    color 0.2s; /* continua a lista de transições */
+}
+.card .btn {
+  width: 100%; /* define a largura */
+}
+.btn:hover {
+  background: var(--fg); /* define o fundo */
+  color: var(--bg); /* define a cor do texto */
+}
+
+/* IA */
+.ai {
+  max-width: 720px; /* define a largura máxima */
+  margin: 0 auto; /* define o espaço externo */
+  padding: 6vh 5vw; /* define o espaço interno */
+}
+.log {
+  height: 260px; /* define a altura */
+  margin: 1.2rem 0 0.8rem; /* define o espaço externo */
+  padding: 1rem; /* define o espaço interno */
+  overflow: auto; /* define como conteúdo excedente é tratado */
+  display: flex; /* define o tipo de layout */
+  flex-direction: column; /* define a direção dos itens flex */
+  gap: 0.6rem; /* define o espaço entre itens */
+  border: 1px solid var(--line); /* define a borda */
+  background: var(--card); /* define o fundo */
+}
+.msg {
+  max-width: 85%; /* define a largura máxima */
+  padding: 0.5rem 0.9rem; /* define o espaço interno */
+  border-left: 2px solid var(--gold); /* define a borda esquerda */
+  font-size: 0.92rem; /* define o tamanho da fonte */
+}
+.msg.me {
+  align-self: flex-end; /* alinha este item individualmente */
+  border-left: 0; /* define a borda esquerda */
+  border-right: 2px solid var(--fg); /* define a borda direita */
+  text-align: right; /* alinha o texto */
+}
+.chips {
+  display: flex; /* define o tipo de layout */
+  flex-wrap: wrap; /* permite que os itens quebrem para outra linha */
+  gap: 0.5rem; /* define o espaço entre itens */
+  margin-bottom: 0.8rem; /* define o espaço externo inferior */
+}
+.chips button {
+  padding: 0.35rem 0.9rem; /* define o espaço interno */
+  border: 1px solid var(--line); /* define a borda */
+  border-radius: 999px; /* arredonda os cantos */
+  background: transparent; /* define o fundo */
+  font-size: 0.8rem; /* define o tamanho da fonte */
+}
+.chips button:hover {
+  border-color: var(--gold); /* muda a borda para dourado */
+}
+#chat {
+  display: flex; /* define o tipo de layout */
+  gap: 0.5rem; /* define o espaço entre itens */
+}
+#chat input {
+  flex: 1; /* define como o item flexível ocupa o espaço */
+  padding: 0.7rem 1rem; /* define o espaço interno */
+  border: 1px solid var(--fg); /* define a borda */
+  background: transparent; /* define o fundo */
+}
+#chat .btn {
+  margin: 0; /* define o espaço externo */
+}
+
+/* banner de promoção */
+.promo {
+  margin: 6vh 5vw; /* define o espaço externo */
+  padding: 2.5rem 1.5rem; /* define o espaço interno */
+  text-align: center; /* alinha o texto */
+  border: 1px solid var(--gold); /* define a borda */
+  background: linear-gradient( /* define o fundo */
+    135deg, /* define o ângulo do gradiente */
+    color-mix(in srgb, var(--gold) 25%, var(--bg)), /* mistura dourado e fundo para criar o tom inicial */
+    var(--bg) /* continua a definição do fundo ou gradiente */
+  ); /* continua a definição do fundo ou gradiente */
+}
+.promo h3 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem); /* define o tamanho da fonte */
+}
+.promo p {
+  margin: 0.4rem 0 0; /* define o espaço externo */
+}
+
+/* rodapé em gradiente: branco para preto (claro) ou preto para branco (escuro) */
+footer {
+  min-height: 70vh; /* define a altura mínima */
+  display: flex; /* define o tipo de layout */
+  align-items: flex-end; /* alinha itens no eixo transversal */
+  justify-content: center; /* distribui itens no eixo principal */
+  padding: 0 5vw 8vh; /* define o espaço interno */
+  background: linear-gradient(var(--bg), var(--fg)); /* define o fundo */
+}
+footer div {
+  display: flex; /* define o tipo de layout */
+  flex-wrap: wrap; /* permite que os itens quebrem para outra linha */
+  justify-content: center; /* distribui itens no eixo principal */
+  gap: 3rem; /* define o espaço entre itens */
+}
+footer button {
+  padding: 1rem 2rem; /* define o espaço interno */
+  border: 0; /* define a borda */
+  background: none; /* define o fundo */
+  color: var(--bg); /* define a cor do texto */
+  font: 500 1.7rem var(--serif); /* define as características da fonte */
+  letter-spacing: 0.1em; /* aumenta o espaço entre as letras */
+}
+footer button:hover {
+  text-decoration: underline; /* define a decoração do texto */
+  text-underline-offset: 8px; /* define a distância do sublinhado */
+}
+
+/* janela (sobre, serviços, carrinho) */
+dialog {
+  position: fixed; /* define o tipo de posicionamento */
+  width: min(520px, 92vw); /* define a largura */
+  max-height: 85vh; /* limita a altura a 85% da janela */
+  padding: 2rem; /* define o espaço interno */
+  overflow: auto; /* define como conteúdo excedente é tratado */
+  background: var(--bg); /* define o fundo */
+  color: var(--fg); /* define a cor do texto */
+  border: 1px solid var(--gold); /* define a borda */
+}
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.65); /* define o fundo */
+}
+dialog h3 {
+  font-size: 2rem; /* define o tamanho da fonte */
+  margin-bottom: 0.8rem; /* define o espaço externo inferior */
+}
+dialog h4 {
+  margin: 1.2rem 0 0.2rem; /* define o espaço externo */
+  font: 700 1.3rem var(--serif); /* define as características da fonte */
+}
+.x {
+  position: absolute; /* define o tipo de posicionamento */
+  top: 0.5rem; /* define a distância do topo */
+  right: 1rem; /* define a distância da direita */
+  border: 0; /* define a borda */
+  background: none; /* define o fundo */
+  font-size: 1.8rem; /* define o tamanho da fonte */
+}
+.row {
+  display: flex; /* define o tipo de layout */
+  justify-content: space-between; /* distribui itens no eixo principal */
+  gap: 1rem; /* define o espaço entre itens */
+  padding: 0.6rem 0; /* define o espaço interno */
+  border-bottom: 1px solid var(--line); /* define a borda inferior */
+}
+.row button {
+  border: 0; /* define a borda */
+  background: none; /* define o fundo */
+  margin-left: 0.5rem; /* adiciona espaço à esquerda */
+}
+.tot {
+  font-weight: 500; /* define a espessura da fonte */
+  border-bottom: 0; /* define a borda inferior */
+}
+
+@media (max-width: 700px) {
+  .stage {
+    --wh: 50vh; /* altura do relógio */
+    --k: 0.2; /* distância das legendas ao relógio */
+  }
+  .lab {
+    width: 26vw; /* define a largura */
+    font-size: 0.7rem; /* define o tamanho da fonte */
+  }
+  .lab span {
+    display: none; /* define o tipo de layout */
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto; /* define o comportamento da rolagem */
+  }
+  * { /* aplica a regra a todos os elementos */
+    transition: none !important; /* define quais mudanças são animadas */
+  }
+}
