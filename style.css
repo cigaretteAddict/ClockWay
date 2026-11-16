@@ -320,6 +320,19 @@ h2 {
 .pic svg {
   height: 100%; /* define a altura */
 }
+.pic img {
+  width: 100%; /* ocupa a largura disponível */
+  height: 100%; /* ocupa a altura disponível */
+  object-fit: contain; /* mantém a proporção da imagem */
+}
+.pic span {
+  display: grid; /* define o tipo de layout */
+  width: 200px; /* define a largura */
+  height: 100%; /* ocupa a altura disponível */
+  place-items: center; /* centraliza o texto */
+  color: var(--mut); /* define a cor do texto */
+  font-size: 0.85rem; /* define o tamanho da fonte */
+}
 .btn {
   margin-top: 1rem; /* define o espaço externo superior */
   padding: 0.75rem 1.4rem; /* define o espaço interno */
@@ -395,6 +408,36 @@ h2 {
 #chat .btn {
   margin: 0; /* define o espaço externo */
 }
+.feedback {
+  margin-top: 2rem; /* separa o formulário de feedback do chat */
+  padding-top: 1.5rem; /* cria espaço acima do formulário */
+  border-top: 1px solid var(--line); /* separa visualmente as duas áreas */
+}
+#feedbackForm {
+  display: flex; /* organiza os campos em coluna */
+  flex-direction: column; /* coloca cada campo em uma linha */
+  gap: 0.5rem; /* define o espaço entre os campos */
+}
+#feedbackForm textarea,
+#couponForm input {
+  width: 100%; /* ocupa a largura disponível */
+  padding: 0.7rem 1rem; /* define o espaço interno */
+  border: 1px solid var(--fg); /* define a borda */
+  background: transparent; /* mantém o fundo do tema */
+  color: var(--fg); /* usa a cor de texto do tema */
+  font: inherit; /* usa a fonte do site */
+}
+#feedbackForm textarea {
+  resize: vertical; /* permite ajustar a altura do campo */
+}
+#feedbackForm .btn {
+  align-self: flex-start; /* mantém o botão alinhado à esquerda */
+  margin-top: 0.4rem; /* separa o botão do campo de comentário */
+}
+.form-status {
+  margin: 0.4rem 0 0; /* adiciona espaço acima da confirmação */
+  color: var(--mut); /* usa a cor de texto secundário */
+}
 
 /* banner de promoção */
 .promo {
@@ -413,6 +456,20 @@ h2 {
 }
 .promo p {
   margin: 0.4rem 0 0; /* define o espaço externo */
+}
+#couponForm {
+  display: flex; /* organiza os campos do cupom */
+  flex-direction: column; /* coloca cada campo em uma linha */
+  align-items: center; /* centraliza os campos */
+  gap: 0.5rem; /* define o espaço entre os campos */
+  max-width: 360px; /* limita a largura do formulário */
+  margin: 1.2rem auto 0; /* centraliza o formulário e separa do texto */
+}
+#couponForm label {
+  align-self: flex-start; /* alinha o rótulo à esquerda do campo */
+}
+#couponForm .btn {
+  margin-top: 0.3rem; /* separa o botão do campo de e-mail */
 }
 
 /* rodapé em gradiente: branco para preto (claro) ou preto para branco (escuro) */
