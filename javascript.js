@@ -59,7 +59,8 @@ const frame = () => {
   labs.forEach((l, i) => l.classList.toggle("on", t > 0.08 + i * 0.14));
 };
 $("#closeAnnouncement").onclick = () => {
-  $("#announcement").remove();
+  const announcement = $("#announcement");
+  if (announcement) announcement.style.display = "none";
   frame();
 };
 addEventListener(
@@ -155,7 +156,7 @@ const draw = (q) => {
     ? list
         .map(
           (w) =>
-            `<article class="card"><div class="pic">${w.img ? `<img src="${w.img}" alt="Relógio ${w.n}" loading="lazy">` : '<span>Adicione o endereço da imagem no campo img</span>'}</div><h3>${w.n}</h3><p class="mut">${w.k}</p><strong>${money(w.p)}</strong><button class="btn" data-i="${w.i}">Adicionar ao carrinho</button></article>`,
+            `<article class="card"><div class="pic">${w.img ? `<img src="${w.img}" alt="Relógio ${w.n}" loading="lazy">` : "<span>Adicione o endereço da imagem no campo img</span>"}</div><h3>${w.n}</h3><p class="mut">${w.k}</p><strong>${money(w.p)}</strong><button class="btn" data-i="${w.i}">Adicionar ao carrinho</button></article>`,
         )
         .join("")
     : '<p class="mut">Nenhum relógio encontrado. Tente outro nome ou material.</p>';
