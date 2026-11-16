@@ -15,7 +15,8 @@
   --card: #0d0d0d; /* fundo dos cartões */
   --line: #262626; /* cor das bordas */
 }
-* { /* aplica a regra a todos os elementos */
+* {
+  /* aplica a regra a todos os elementos */
   box-sizing: border-box; /* define como largura e altura são calculadas */
 }
 html {
@@ -26,12 +27,12 @@ body {
   background: var(--bg); /* define o fundo */
   color: var(--fg); /* define a cor do texto */
   font: /* define as características da fonte */
-    300 1rem/1.6 Jost, /* peso, tamanho, altura de linha e fonte principal */
-    system-ui, /* primeira fonte alternativa se Jost não estiver disponível */
-    sans-serif; /* continua a configuração da fonte */
+    300 1rem/1.6 Jost,
+    /* peso, tamanho, altura de linha e fonte principal */ system-ui,
+    /* primeira fonte alternativa se Jost não estiver disponível */ sans-serif; /* continua a configuração da fonte */
   transition: /* define quais mudanças são animadas */
-    background 0.4s, /* anima mudanças na cor de fundo por 0,4 segundo */
-    color 0.4s; /* continua a lista de transições */
+    background 0.4s,
+    /* anima mudanças na cor de fundo por 0,4 segundo */ color 0.4s; /* continua a lista de transições */
 }
 button, /* inclui botões neste conjunto de estilos */
 input {
@@ -76,7 +77,9 @@ h2 {
   position: absolute; /* define o tipo de posicionamento */
   top: 50%; /* define a distância do topo */
   right: 0.5rem; /* define a distância da direita */
-  transform: translateY(-50%); /* aplica deslocamento, escala ou transformação */
+  transform: translateY(
+    -50%
+  ); /* aplica deslocamento, escala ou transformação */
   width: 32px; /* define a largura */
   height: 32px; /* define a altura */
   padding: 0; /* define o espaço interno */
@@ -126,7 +129,9 @@ h2 {
 
 .tools {
   position: fixed; /* define o tipo de posicionamento */
-  top: calc(var(--notice-offset, 0px) + 0.8rem); /* define a distância do topo */
+  top: calc(
+    var(--notice-offset, 0px) + 0.8rem
+  ); /* define a distância do topo */
   right: 0.8rem; /* define a distância da direita */
   display: flex; /* define o tipo de layout */
   gap: 0.5rem; /* define o espaço entre itens */
@@ -214,10 +219,12 @@ h2 {
   display: grid; /* define o tipo de layout */
   place-items: center; /* alinha itens nos eixos do grid */
   overflow: hidden; /* define como conteúdo excedente é tratado */
-  background: radial-gradient( /* define o fundo */
-    circle, /* escolhe um gradiente circular */
-    color-mix(in srgb, var(--gold) 20%, transparent), /* mistura dourado com transparência para o centro */
-    transparent 55% /* continua a definição do fundo ou gradiente */
+  background: radial-gradient(
+    /* define o fundo */ circle,
+    /* escolhe um gradiente circular */
+    color-mix(in srgb, var(--gold) 20%, transparent),
+    /* mistura dourado com transparência para o centro */ transparent 55%
+      /* continua a definição do fundo ou gradiente */
   ); /* continua a definição do fundo ou gradiente */
 }
 .watch {
@@ -229,11 +236,15 @@ h2 {
   height: 100%; /* define a altura */
   transform: rotateX(8deg) rotateY(var(--r, 0deg)); /* aplica deslocamento, escala ou transformação */
   transform-style: preserve-3d; /* preserva transformações 3D dos filhos */
-  filter: drop-shadow(0 30px 30px rgba(0, 0, 0, 0.35)); /* aplica um efeito visual */
+  filter: drop-shadow(
+    0 30px 30px rgba(0, 0, 0, 0.35)
+  ); /* aplica um efeito visual */
 }
 .lab {
   position: absolute; /* define o tipo de posicionamento */
-  top: calc(50% + var(--wh) * var(--y) - 0.75rem); /* define a distância do topo */
+  top: calc(
+    50% + var(--wh) * var(--y) - 0.75rem
+  ); /* define a distância do topo */
   width: min(26vw, 230px); /* define a largura */
   font-size: 0.85rem; /* define o tamanho da fonte */
   color: var(--mut); /* define a cor do texto */
@@ -291,7 +302,10 @@ h2 {
 }
 .grid {
   display: grid; /* define o tipo de layout */
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* define as colunas do grid */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* define as colunas do grid */
   gap: 2rem; /* define o espaço entre itens */
 }
 .card {
@@ -339,8 +353,8 @@ h2 {
   border: 1px solid var(--fg); /* define a borda */
   background: transparent; /* define o fundo */
   transition: /* define quais mudanças são animadas */
-    background 0.2s, /* anima a troca do fundo */
-    color 0.2s; /* continua a lista de transições */
+    background 0.2s,
+    /* anima a troca do fundo */ color 0.2s; /* continua a lista de transições */
 }
 .card .btn {
   width: 100%; /* define a largura */
@@ -445,10 +459,12 @@ h2 {
   padding: 2.5rem 1.5rem; /* define o espaço interno */
   text-align: center; /* alinha o texto */
   border: 1px solid var(--gold); /* define a borda */
-  background: linear-gradient( /* define o fundo */
-    135deg, /* define o ângulo do gradiente */
-    color-mix(in srgb, var(--gold) 25%, var(--bg)), /* mistura dourado e fundo para criar o tom inicial */
-    var(--bg) /* continua a definição do fundo ou gradiente */
+  background: linear-gradient(
+    /* define o fundo */ 135deg,
+    /* define o ângulo do gradiente */
+    color-mix(in srgb, var(--gold) 25%, var(--bg)),
+    /* mistura dourado e fundo para criar o tom inicial */ var(--bg)
+      /* continua a definição do fundo ou gradiente */
   ); /* continua a definição do fundo ou gradiente */
 }
 .promo h3 {
@@ -564,7 +580,8 @@ dialog h4 {
   html {
     scroll-behavior: auto; /* define o comportamento da rolagem */
   }
-  * { /* aplica a regra a todos os elementos */
+  * {
+    /* aplica a regra a todos os elementos */
     transition: none !important; /* define quais mudanças são animadas */
   }
 }
