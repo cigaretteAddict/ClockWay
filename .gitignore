@@ -1,0 +1,4 @@
+test-pdo.php
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,203 @@
+<!doctype html>
+<!-- Documento HTML5; o idioma definido no elemento html é usado por leitores de tela e mecanismos de busca. -->
+<html lang="pt-BR">
+  <head>
+    <!-- Define a codificação para exibir corretamente acentos e outros caracteres. -->
+    <meta charset="UTF-8" />
+    <!-- Faz o layout adaptar-se à largura de celulares e outros dispositivos. -->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <!-- Texto exibido na aba do navegador. -->
+    <title>Clockway - Relógios de luxo</title>
+    <!-- Prepara a conexão com o serviço de fontes do Google para carregar as fontes mais rápido. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Carrega as fontes usadas no site. -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Jost:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Carrega os estilos visuais definidos no arquivo CSS. -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Aviso promocional no topo; o botão com id closeAnnouncement é controlado pelo JavaScript. -->
+    <aside id="announcement" class="announcement" aria-label="Aviso da loja">
+      <span>Inauguração da loja Clockway!</span>
+      <button id="closeAnnouncement" type="button" aria-label="Fechar aviso">
+        ×
+      </button>
+    </aside>
+
+    <!-- Nome compacto da loja que aparece na barra fixa durante a rolagem. -->
+    <header class="bar"><span>clockway</span></header>
+
+    <!-- Logotipo grande em SVG; role e aria-label descrevem a imagem para acessibilidade. -->
+    <div class="logo" role="img" aria-label="Clockway">
+      <svg viewBox="0 0 1000 320" aria-hidden="true">
+        <text
+          x="500"
+          y="185"
+          text-anchor="middle"
+          textLength="880"
+          lengthAdjust="spacing"
+        >
+          CLOCKWAY
+        </text>
+      </svg>
+    </div>
+
+    <!-- Atalhos fixos: navegação para seções, abertura do carrinho e alternância de tema. -->
+    <div class="tools">
+      <a class="tool-link" href="#loja">Relógios</a>
+      <a class="tool-link" href="#ia">IA</a>
+      <!-- cartBtn abre o carrinho; count mostra quantos itens foram adicionados. -->
+      <button id="cartBtn" class="round" aria-label="Abrir carrinho">
+        🛒<b id="count">0</b>
+      </button>
+      <!-- O JavaScript define o ícone e alterna entre os temas claro e escuro. -->
+      <button
+        id="theme"
+        class="round"
+        aria-label="Alternar entre modo claro e escuro"
+      ></button>
+    </div>
+
+    <main>
+      <!-- Apresentação animada do relógio; o JavaScript insere o desenho dentro de #hero. -->
+      <section class="tour" id="tour">
+        <div class="stage">
+          <div id="hero" class="watch"></div>
+          <!-- Legendas que identificam as partes do relógio durante a animação. -->
+          <div class="lab r" style="--y: 0; --e: 0.183">
+            <h4>Coroa</h4>
+            <span>Rosqueada, garante 100 m de resistência à água.</span>
+          </div>
+          <div class="lab l" style="--y: -0.12; --e: 0.06">
+            <h4>Vidro de safira</h4>
+            <span>Antirreflexo e resistente a riscos.</span>
+          </div>
+          <div class="lab r" style="--y: -0.14; --e: 0.04">
+            <h4>Mostrador</h4>
+            <span>Índices aplicados à mão e ponteiros luminosos.</span>
+          </div>
+          <div class="lab l" style="--y: 0.02; --e: 0.175">
+            <h4>Caixa</h4>
+            <span>Aço ou ouro, polida peça por peça.</span>
+          </div>
+          <div class="lab r" style="--y: 0.14; --e: 0.04">
+            <h4>Movimento</h4>
+            <span>Mecânico automático com reserva de marcha.</span>
+          </div>
+          <div class="lab l" style="--y: 0.3; --e: 0.05">
+            <h4>Pulseira</h4>
+            <span>Couro ou aço, com fecho de segurança.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vitrine de produtos. O JavaScript cria os cartões dentro de #grid.
+           Para definir as fotos dos produtos, preencha img em cada relógio no arquivo javascript.js. -->
+      <section class="shop" id="loja">
+        <h2>Coleção</h2>
+        <!-- Campo de busca; o JavaScript filtra os relógios conforme o texto digitado. -->
+        <input
+          id="q"
+          type="search"
+          placeholder="Pesquisar relógio"
+          aria-label="Pesquisar relógio"
+        />
+        <div id="grid" class="grid"></div>
+      </section>
+
+      <!-- Área do assistente de relógios. -->
+      <section class="ai" id="ia">
+        <h2>Pergunte sobre relógios</h2>
+        <p class="mut">
+          Tire dúvidas sobre movimentos, materiais, manutenção e sobre os
+          modelos da coleção.
+        </p>
+        <!-- Histórico de mensagens do assistente e do visitante. -->
+        <div id="log" class="log" aria-live="polite"></div>
+        <!-- Perguntas rápidas que preenchem e enviam o formulário. -->
+        <div class="chips">
+          <button>Qual a diferença entre automático e quartzo?</button>
+          <button>Como cuidar do meu relógio?</button>
+          <button>Qual escolher como primeiro relógio?</button>
+        </div>
+        <!-- Formulário de perguntas; o JavaScript trata o envio sem recarregar a página. -->
+        <form id="chat">
+          <input
+            id="ask"
+            placeholder="Digite sua pergunta"
+            aria-label="Sua pergunta"
+            autocomplete="off"
+          />
+          <button class="btn">Perguntar</button>
+        </form>
+
+        <!-- Formulário para avaliar a experiência no site. O envio mostra uma confirmação nesta página. -->
+        <div class="feedback">
+          <h3>Deixe seu feedback</h3>
+          <p class="mut">Conte o que achou do site e como podemos melhorar.</p>
+          <form id="feedbackForm">
+            <label for="feedbackMessage">Seu comentário</label>
+            <textarea
+              id="feedbackMessage"
+              name="feedback"
+              rows="4"
+              placeholder="Escreva sua opinião"
+              required
+            ></textarea>
+            <button class="btn" type="submit">Enviar feedback</button>
+            <p id="feedbackStatus" class="form-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- Promoção de primeira compra; informe um e-mail para ativar o cupom no carrinho. -->
+      <section class="promo">
+        <h3>5% de desconto na primeira compra</h3>
+        <p>
+          Use o cupom <strong>CLOCK5</strong> e ele é aplicado no seu carrinho.
+        </p>
+        <form id="couponForm">
+          <label for="couponEmail">Seu e-mail</label>
+          <input
+            id="couponEmail"
+            name="email"
+            type="email"
+            placeholder="voce@exemplo.com"
+            autocomplete="email"
+            required
+          />
+          <button id="cupom" class="btn" type="submit">Ativar cupom</button>
+          <p id="couponStatus" class="form-status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <!-- Mensagem final da página. -->
+      <section class="intro ending">
+        <p>Relógios de luxo, venda e manutenção</p>
+        <small>Role a página para ver o relógio por dentro</small>
+      </section>
+    </main>
+
+    <!-- Rodapé com botões que abrem as informações de serviços e sobre a loja. -->
+    <footer>
+      <div>
+        <button data-m="servicos">Serviços</button>
+        <button data-m="sobre">Sobre</button>
+      </div>
+    </footer>
+
+    <!-- Janela de diálogo reutilizada pelo JavaScript para mostrar carrinho, serviços e informações da loja. -->
+    <dialog id="modal">
+      <button class="x" aria-label="Fechar">×</button>
+      <!-- O JavaScript insere o conteúdo da janela neste elemento. -->
+      <div id="mbody"></div>
+    </dialog>
+
+    <!-- Carrega o código JavaScript que controla interações, animações e conteúdo dinâmico. -->
+    <script src="javascript.js"></script>
+  </body>
+</html>
