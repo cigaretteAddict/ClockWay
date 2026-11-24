@@ -294,26 +294,6 @@ modal.onclick = async (e) => {
     mb.innerHTML = cartHTML();
   }
 };
-document
-  .querySelector("[data-checkout]")
-  .onclick = async () => {
-    const status = $("#checkoutStatus");
-    status.textContent = "Finalizando pedido...";
-    try {
-      const resposta = await fetch("api.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ acao: "pedido", itens: cart }),
-      });
-      const dados = await resposta.json();
-      if (!resposta.ok) throw new Error(dados.erro || "Erro ao finalizar pedido.");
-
-      status.textContent = "Pedido realizado com sucesso!";
-      setTimeout(() => modal.close(), 2000);
-    } catch (erro) {
-      status.textContent = erro.message;
-    }
-  };
 
 /* ---------- assistente de relógios ----------
    Responde com uma base local. Para usar uma IA de verdade, coloque aqui o endereço do seu

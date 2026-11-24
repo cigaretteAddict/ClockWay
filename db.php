@@ -1,11 +1,17 @@
 <?php
-// Configuração da conexão com o MySQL/MariaDB.
-// Se estiver usando XAMPP, normalmente: usuário "root" e senha vazia.
+// Credenciais locais ficam em config.local.php (ignorado pelo Git).
+// Em hospedagem, use as variáveis DB_HOST, DB_NAME, DB_USER e DB_PASS.
 
-$host = getenv('DB_HOST') ?: '127.0.0.1';
-$dbname = getenv('DB_NAME') ?: 'clockway';
-$username = getenv('DB_USER') ?: 'root';
-$password = getenv('DB_PASS') ?: 'root';
+$configLocal = [];
+$configFile = __DIR__ . '/config.local.php';
+if (is_file($configFile)) {
+    $configLocal = require $configFile;
+}
+
+$host = getenv('DB_HOST') ?: ($configLocal['host'] ?? '');
+$dbname = getenv('DB_NAME') ?: ($configLocal['dbname'] ?? '');
+$username = getenv('DB_USER') ?: ($configLocal['username'] ?? '');
+$password = getenv('DB_PASS') ?: ($configLocal['password'] ?? '');
 
 try {
     $pdo = new PDO(
